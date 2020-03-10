@@ -1,19 +1,13 @@
 class Solution:
-    def reverseString(self, s) -> None:
+    def reverseString(self, s: List[str]) -> None:
         """
         Do not return anything, modify s in-place instead.
         """
-        k = ''
-       
-            
-        for i in range (0,len(s)):
-            
-            k = s[i]
-            s[i] = s[len(s)-i-1]
-            s[len(s)-i-1] = k
-            s[i]=s[i-1]
-            
         
-A=Solution()
-A.reverseString(["h","e","l","l","o"])
-            
+        def helper(left, right):
+            if left<right:
+                s[left], s[right] = s[right], s[left]
+                helper(left + 1, right - 1)
+                
+        helper(0, len(s)-1)
+        
