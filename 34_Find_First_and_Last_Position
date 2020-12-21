@@ -1,0 +1,31 @@
+class Solution:
+    
+
+    def retrieveIndexes(self, nums, target, left):
+        
+        lo = 0
+        hi = len(nums)
+        
+        while lo<hi:
+            mid = (lo + hi)//2
+            
+            if (nums[mid]>target) or (left and nums[mid]==target):
+                hi = mid
+            else:
+                lo = mid + 1
+        
+        return lo
+        
+    
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        
+        leftIndex = self.retrieveIndexes(nums, target, True)
+        
+        if leftIndex == len(nums) or nums[leftIndex]!=target:
+            return [-1,-1]
+        
+        rightIndex = self.retrieveIndexes(nums, target, False)
+        
+        return [leftIndex, rightIndex-1]
+        
+        
